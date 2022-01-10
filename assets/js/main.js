@@ -19,6 +19,7 @@ let questions = [
   },
 ];
 let answered = [];
+let highScores = [];
 
 // -----------------------
 // FUNCTIONS
@@ -102,6 +103,12 @@ let endGame = function () {
   document.querySelector('form').addEventListener('submit', saveHiScore);
 };
 
+let saveHiScore = function (event) {
+  event.preventDefault();
+  highScores.push({ initials: event.target[0].value, score: currentTime });
+  console.log(highScores);
+  localStorage.setItem('highScores', JSON.stringify(highScores));
+};
 
 // -----------------------
 // EVENT HANDLERS
