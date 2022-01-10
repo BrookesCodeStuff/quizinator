@@ -118,6 +118,8 @@ main {
 .content {
   width: 55vw;
   margin: 10vh auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .content > *:where(:not(:first-child)) {
@@ -136,6 +138,35 @@ button {
 button:hover,
 button:focus {
   background-color: rgb(var(--pink));
+}
+
+.questionBtn {
+  text-align: left;
+  width: 400px;
+  height: auto;
+}
+
+.response {
+  border-top: 1px solid gray;
+  padding-top: 10px;
+  color: gray;
+  font-size: 2rem;
+  font-style: italic;
+}
+
+.content form {
+  margin-top: 2px;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
+
+form input {
+  font-size: 2rem;
+  min-width: 3ch;
+  max-width: 30%;
+  padding: 5px;
+  margin: 0 15px;
 }
 
 /* TO-DO: add styling for the high scores table */
