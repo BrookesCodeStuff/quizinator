@@ -1,10 +1,9 @@
 // -----------------------
 // GLOBAL VARIABLES
 // -----------------------
-let main = document.querySelector('.content');
-let time = document.querySelector('.time');
-let currentTime = 0;
-let questions = [
+const main = document.querySelector('.content');
+const time = document.querySelector('.time');
+const questions = [
   { question: 'True or False?', options: ['true', 'false'], answer: 'true' },
   { question: 'One or two?', options: ['one', 'two'], answer: 'one' },
   {
@@ -18,7 +17,9 @@ let questions = [
     answer: 'no',
   },
 ];
-let answered = [];
+let currentTime = 0;
+let hiScore;
+let availableQuestions = [...new Array(questions.length).keys()];
 let highScores = [];
 
 // -----------------------
@@ -26,7 +27,7 @@ let highScores = [];
 // -----------------------
 let startQuiz = function () {
   // Set the timer (add 1 second so the timer displays the actual start time)
-  currentTime = 5;
+  currentTime = 60;
   // Update the count down every 1 second
   setInterval(function () {
     currentTime = Math.max(0, currentTime - 1);
@@ -37,10 +38,10 @@ let startQuiz = function () {
 };
 
 let showQuestion = function () {
-  if (parseInt(currentTime) > 0) {
+  if (parseInt(currentTime) > 0 && availableQuestions.length > 0) {
     // Get a random question from the available questions
-    let num = Math.floor(Math.random() * questions.length);
-    let currQ = questions[num];
+    let num = Math.floor(Math.random() * availableQuestions.length);
+    let currQ = questions[availableQuestions[num]];
 
     // Display the question in the main element
     main.innerHTML = `
@@ -54,12 +55,13 @@ let showQuestion = function () {
       btn.addEventListener('click', answerHandler);
       main.appendChild(btn);
     }
+    // Remove the question from the array so we don't get it again
+    console.log(num, availableQuestions, availableQuestions.indexOf(num));
+    availableQuestions.splice(availableQuestions.indexOf(num), 1);
+    console.log(availableQuestions);
   } else {
     return endGame();
   }
-
-  // Remove the question from the array so we don't get it again
-  // questions = questions.splice(currQ, 1);
 };
 
 let answerHandler = function (event) {
@@ -90,10 +92,12 @@ let endGame = function () {
     alert("Time's up!");
   } else {
     alert('You won!');
+    hiScore = currentTime;
+    currentTime = 0;
   }
   main.innerHTML = `
   <h1>All done!</h2>
-  <p>Your final score is ${currentTime}.</p>
+  <p>Your final score is ${hiScore}.</p>
   <form>
   <label for="initials">Enter initials:</label>
   <input name="initials" id="initials" type="text" />
@@ -105,12 +109,23 @@ let endGame = function () {
 
 let saveHiScore = function (event) {
   event.preventDefault();
-  highScores.push({ initials: event.target[0].value, score: currentTime });
+  highScores.push({ initials: event.target[0].value, score: hiScore });
   console.log(highScores);
   localStorage.setItem('highScores', JSON.stringify(highScores));
+  event.target.reset();
+  document.querySelector('#submit').disabled = true;
+};
+
+let loadHighScores = function () {
+  if (!highScores) {
+    return false;
+  }
+  highScores = JSON.parse(localStorage.getItem('highScores'));
 };
 
 // -----------------------
 // EVENT HANDLERS
 // -----------------------
 document.querySelector('#start-quiz').addEventListener('click', startQuiz);
+
+loadHighScores();

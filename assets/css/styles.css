@@ -140,6 +140,10 @@ button:focus {
   background-color: rgb(var(--pink));
 }
 
+button:disabled {
+  background-color: gray;
+}
+
 .questionBtn {
   text-align: left;
   width: 400px;
