@@ -217,3 +217,22 @@ form input {
 .close-modal:focus {
   color: rgb(var(--pink));
 }
+
+.hi-score-box table {
+  width: 90%;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.hi-score-box table th {
+  background-color: rgba(var(--purple), 0.8);
+  color: rgb(var(--white));
+}
+
+.hi-score-box table tr:nth-child(even) {
+  background-color: rgba(var(--purple), 0.2);
+}
+
+.hi-score-box table tr td {
+  padding-left: 10px;
+}
