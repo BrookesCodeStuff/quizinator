@@ -7,6 +7,9 @@
   --purple: 53, 28, 117;
   --light-purple: 217, 211, 233;
   --pink: 189, 96, 231;
+  --black: 0, 0, 0;
+  --white: 255, 255, 255;
+  --gray: 128, 128, 128;
 }
 
 /* -------------------------------------------- */
@@ -129,10 +132,11 @@ main {
 button {
   background-color: rgb(var(--purple));
   font-size: 2rem;
-  color: white;
+  color: rgb(var(--white));
   border: none;
   border-radius: 15px;
   padding: 15px 25px;
+  cursor: pointer;
 }
 
 button:hover,
@@ -141,7 +145,7 @@ button:focus {
 }
 
 button:disabled {
-  background-color: gray;
+  background-color: rgb(var(--gray));
 }
 
 .questionBtn {
@@ -151,9 +155,9 @@ button:disabled {
 }
 
 .response {
-  border-top: 1px solid gray;
+  border-top: 1px solid rgb(var(--gray));
   padding-top: 10px;
-  color: gray;
+  color: rgb(var(--gray));
   font-size: 2rem;
   font-style: italic;
 }
@@ -173,4 +177,43 @@ form input {
   margin: 0 15px;
 }
 
-/* TO-DO: add styling for the high scores table */
+/* -------------------------------------------- */
+/*            HIGH SCORES MODAL                 */
+/* -------------------------------------------- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(var(--black), 0.4);
+}
+
+.hi-score-box {
+  background-color: rgb(var(--white));
+  margin: 15vh auto;
+  padding: 20px;
+  border: 1px solid rgba(var(--purple));
+  border-radius: 15px;
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-modal {
+  align-self: flex-end;
+  font-size: 3rem;
+  color: rgba(var(--purple), 0.8);
+  cursor: pointer;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: rgb(var(--pink));
+}
