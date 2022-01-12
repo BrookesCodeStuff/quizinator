@@ -26,7 +26,7 @@ let highScores = [];
 // -----------------------
 // FUNCTIONS
 // -----------------------
-let startQuiz = function () {
+const startQuiz = function () {
   // Set the timer (add 1 second so the timer displays the actual start time)
   currentTime = 60;
   // Update the count down every 1 second
@@ -38,7 +38,7 @@ let startQuiz = function () {
   showQuestion();
 };
 
-let showQuestion = function () {
+const showQuestion = function () {
   // If there's still time on the clock and questions available to be answered
   if (parseInt(currentTime) > 0 && availableQuestions.length > 0) {
     // Get a random question from the available questions
@@ -67,7 +67,7 @@ let showQuestion = function () {
   }
 };
 
-let answerHandler = function (event) {
+const answerHandler = function (event) {
   // Get the question key
   let key = event.target.dataset['key'];
   // Get the answer text from the button
@@ -103,7 +103,7 @@ let answerHandler = function (event) {
   main.appendChild(response);
 };
 
-let endGame = function () {
+const endGame = function () {
   if (currentTime === 0) {
     // The player lost, the timer has run out
     alert("Time's up!");
@@ -132,7 +132,7 @@ let endGame = function () {
   document.querySelector('form').addEventListener('submit', saveHiScore);
 };
 
-let saveHiScore = function (event) {
+const saveHiScore = function (event) {
   event.preventDefault();
   // Save current score to the highScores array
   highScores.push({ initials: event.target[0].value, score: hiScore });
@@ -142,24 +142,27 @@ let saveHiScore = function (event) {
   // can't be submitted multiple times
   event.target.reset();
   document.querySelector('#submit').disabled = true;
+
+  // Re-load the high scores
+  loadHighScores();
 };
 
-let loadHighScores = function () {
+const loadHighScores = function () {
+  let savedScores = localStorage.getItem('highScores');
   // If the high scores value is empty, do nothing
   // or load in the high scores from localStorage
-  if (!highScores) {
-    return false;
+  if (!savedScores) {
+    highScores = [];
+  } else {
+    highScores = JSON.parse(savedScores);
   }
-  highScores = JSON.parse(localStorage.getItem('highScores'));
-};
 
-let showModal = function () {
-  modal.style.display = 'block';
+  let table = document.querySelector('tbody');
   let row;
   for (let i = 0; i < highScores.length; i++) {
     // Create a row
     row = document.createElement('tr');
-
+    row.className = 'score';
     // Create columns with Rank (array index),
     // initials, and the score
     row.innerHTML = `
@@ -168,12 +171,28 @@ let showModal = function () {
       <td>${highScores[i].score}</td>
     `;
     // Add the row to the table
-    document.querySelector('table').appendChild(row);
+    table.appendChild(row);
   }
 };
 
+const showModal = function () {
+  modal.style.display = 'block';
+};
+
 const handleModalClick = function (event) {
-  console.log(event);
+  let target = event.target;
+  switch (target.className) {
+    case 'close-modal':
+      modal.style.display = 'none';
+      break;
+    case 'clear-scores':
+      highScores = [];
+      localStorage.setItem('highScores', highScores);
+      let scores = document.querySelectorAll('.score');
+      scores.forEach((score) => score.remove());
+      loadHighScores();
+      break;
+  }
 };
 
 // -----------------------
