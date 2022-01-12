@@ -25,7 +25,7 @@ const questions = [
     answer: 'Both the <head> section and the <body> section are correct.',
   },
   {
-    question: 'The external JavaScript file must contain the "<script>" tag.',
+    question: 'The external JavaScript file must contain the \<script\> tag.',
     options: ['true', 'false'],
     answer: 'true',
   },
@@ -203,10 +203,18 @@ const handleModalClick = function (event) {
       modal.style.display = 'none';
       break;
     case 'clear-scores':
+      // When the Clear High Scores button is clicked,
+      // reset the highScores array and localStorage
       highScores = [];
       localStorage.setItem('highScores', highScores);
+
+      // Select all of the table rows with the score class
       let scores = document.querySelectorAll('.score');
+
+      // Loop through the scores and delete them from the DOM
       scores.forEach((score) => score.remove());
+
+      // Rebuild the high scores table
       loadHighScores();
       break;
   }
