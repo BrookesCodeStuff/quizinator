@@ -25,9 +25,9 @@ const questions = [
     answer: 'Both the <head> section and the <body> section are correct.',
   },
   {
-    question: 'The external JavaScript file must contain the \<script\> tag.',
+    question: 'The external JavaScript file must contain the script tag.',
     options: ['true', 'false'],
-    answer: 'true',
+    answer: 'false',
   },
   {
     question: 'How do you call a function named "myFunction"?',
@@ -37,13 +37,14 @@ const questions = [
 ];
 let currentTime = 0;
 let hiScore;
-let availableQuestions = [...new Array(questions.length).keys()];
+let availableQuestions;
 let highScores = [];
 
 // -----------------------
 // FUNCTIONS
 // -----------------------
 const startQuiz = function () {
+  availableQuestions = [...new Array(questions.length).keys()];
   // Set the timer (add 1 second so the timer displays the actual start time)
   currentTime = 60;
   // Update the count down every 1 second
@@ -110,7 +111,7 @@ const answerHandler = function (event) {
   // shown for 2 seconds
   setTimeout(() => {
     response.remove();
-  }, 2000);
+  }, 500);
 
   // Show the next question
   showQuestion();
@@ -144,9 +145,11 @@ const endGame = function () {
   <label for="initials">Enter initials:</label>
   <input name="initials" id="initials" type="text" />
   <button type="submit" id="submit">Submit</button>
+  <button type="reset" id="reset">Play Again</button>
   </form>
   `;
   document.querySelector('form').addEventListener('submit', saveHiScore);
+  document.querySelector('#reset').addEventListener('click', startQuiz);
 };
 
 const saveHiScore = function (event) {
