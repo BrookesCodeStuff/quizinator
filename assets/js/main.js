@@ -5,17 +5,34 @@ const main = document.querySelector('.content');
 const time = document.querySelector('.time');
 const modal = document.querySelector('.modal');
 const questions = [
-  { question: 'True or False?', options: ['true', 'false'], answer: 'true' },
-  { question: 'One or two?', options: ['one', 'two'], answer: 'one' },
   {
-    question:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+    question: 'The variable keyword ______ cannot have its value redefined.',
+    options: ['let', 'const', 'var'],
+    answer: 'const',
+  },
+  {
+    question: 'Inside which HTML element do we put the JavaScript?',
+    options: ['<link>', '<script>', '<javascript>', '<js>'],
+    answer: '<script>',
+  },
+  {
+    question: 'Where is the correct place to insert a JavaScript?',
     options: [
-      'yes',
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      'no',
+      'The <head> section.',
+      'The <body> section.',
+      'Both the <head> section and the <body> section are correct.',
     ],
-    answer: 'no',
+    answer: 'Both the <head> section and the <body> section are correct.',
+  },
+  {
+    question: 'The external JavaScript file must contain the "<script>" tag.',
+    options: ['true', 'false'],
+    answer: 'true',
+  },
+  {
+    question: 'How do you call a function named "myFunction"?',
+    options: ['myFunction()', 'call myFunction()', 'hey myFunction()'],
+    answer: 'myFunction()',
   },
 ];
 let currentTime = 0;
