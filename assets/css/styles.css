@@ -1,0 +1,238 @@
+/* -------------------------------------------- */
+/*                 GLOBAL STYLES                */
+/* -------------------------------------------- */
+
+:root {
+  /* colors */
+  --purple: 53, 28, 117;
+  --light-purple: 217, 211, 233;
+  --pink: 189, 96, 231;
+  --black: 0, 0, 0;
+  --white: 255, 255, 255;
+  --gray: 128, 128, 128;
+}
+
+/* -------------------------------------------- */
+/*          MODERN CSS RESET BASED ON           */
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+/* -------------------------------------------- */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+p {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------------------------- */
+/*                 UTILITY CLASSES              */
+/* -------------------------------------------- */
+
+.center {
+  text-align: center;
+}
+
+/* -------------------------------------------- */
+/*                 HEADER STYLES                */
+/* -------------------------------------------- */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header * {
+  margin: 10px;
+}
+
+header a {
+  color: rgb(var(--pink));
+}
+
+header a:hover,
+header a:focus {
+  color: rgb(var(--purple));
+}
+
+/* -------------------------------------------- */
+/*                 MAIN STYLES                  */
+/* -------------------------------------------- */
+
+main {
+  height: 100vh;
+  display: flex;
+}
+
+.content {
+  width: 55vw;
+  margin: 10vh auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.content > *:where(:not(:first-child)) {
+  margin-top: 25px;
+}
+
+button {
+  background-color: rgb(var(--purple));
+  font-size: 2rem;
+  color: rgb(var(--white));
+  border: none;
+  border-radius: 15px;
+  padding: 15px 25px;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  background-color: rgb(var(--pink));
+}
+
+button:disabled {
+  background-color: rgb(var(--gray));
+}
+
+.questionBtn {
+  text-align: left;
+  width: 400px;
+  height: auto;
+}
+
+.response {
+  border-top: 1px solid rgb(var(--gray));
+  padding-top: 10px;
+  color: rgb(var(--gray));
+  font-size: 2rem;
+  font-style: italic;
+}
+
+.content form {
+  margin-top: 2px;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
+
+form input {
+  font-size: 2rem;
+  min-width: 3ch;
+  max-width: 30%;
+  padding: 5px;
+  margin: 0 15px;
+}
+
+/* -------------------------------------------- */
+/*            HIGH SCORES MODAL                 */
+/* -------------------------------------------- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(var(--black), 0.4);
+}
+
+.hi-score-box {
+  background-color: rgb(var(--white));
+  margin: 15vh auto;
+  padding: 20px;
+  border: 1px solid rgba(var(--purple));
+  border-radius: 15px;
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-modal {
+  align-self: flex-end;
+  font-size: 3rem;
+  color: rgba(var(--purple), 0.8);
+  cursor: pointer;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: rgb(var(--pink));
+}
+
+.hi-score-box table {
+  width: 90%;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.hi-score-box table th {
+  background-color: rgba(var(--purple), 0.8);
+  color: rgb(var(--white));
+}
+
+.hi-score-box table tr:nth-child(even) {
+  background-color: rgba(var(--purple), 0.2);
+}
+
+.hi-score-box table tr td {
+  padding-left: 10px;
+}
