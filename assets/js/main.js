@@ -60,10 +60,11 @@ const showQuestion = function () {
   // If there's still time on the clock and questions available to be answered
   if (parseInt(currentTime) > 0 && availableQuestions.length > 0) {
     // Get a random question from the available questions
-    let num = Math.floor(Math.random() * availableQuestions.length);
+    let questNum = Math.floor(Math.random() * availableQuestions.length);
     // Get the question from the questions object that matches the question number
     // from the available pool
-    let currQ = questions[availableQuestions[num]];
+    let num = availableQuestions[questNum];
+    let currQ = questions[num];
 
     // Display the question in the main element
     main.innerHTML = `
