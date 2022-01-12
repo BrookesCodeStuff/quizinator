@@ -146,15 +146,16 @@ const endGame = function () {
   <label for="initials">Enter initials:</label>
   <input name="initials" id="initials" type="text" />
   <button type="submit" id="submit">Submit</button>
-  <button type="reset" id="reset">Play Again</button>
+  <button id="play-again">Play Again</button>
   </form>
   `;
   document.querySelector('form').addEventListener('submit', saveHiScore);
-  document.querySelector('#reset').addEventListener('click', startQuiz);
+  document.querySelector('#play-again').addEventListener('click', startQuiz);
 };
 
 const saveHiScore = function (event) {
   event.preventDefault();
+  console.log(event);
   // Save current score to the highScores array
   highScores.push({ initials: event.target[0].value, score: hiScore });
   // Save the highScores array to localStorage
