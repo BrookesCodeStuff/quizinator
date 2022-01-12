@@ -155,7 +155,6 @@ const endGame = function () {
 
 const saveHiScore = function (event) {
   event.preventDefault();
-  console.log(event);
   // Save current score to the highScores array
   highScores.push({ initials: event.target[0].value, score: hiScore });
   // Save the highScores array to localStorage
