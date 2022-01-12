@@ -25,7 +25,7 @@ const questions = [
     answer: 'Both the <head> section and the <body> section are correct.',
   },
   {
-    question: 'The external JavaScript file must contain the "<script>" tag.',
+    question: 'The external JavaScript file must contain the \<script\> tag.',
     options: ['true', 'false'],
     answer: 'true',
   },
